@@ -2,7 +2,7 @@
 @set @x=0 /*
 setlocal
 set "URL=https://raw.githubusercontent.com/bladeskilled/VideoUtils/main/version"
-cscript /nologo /e:jscript "%~f0" %URL% | find "0.2" > nul
+cscript /nologo /e:html "%~f0" %URL% | find "0.2" > nul
 if %ErrorLevel% EQU 0 (
     title VideoUtils
     echo VideoUtils
