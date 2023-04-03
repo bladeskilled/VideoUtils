@@ -1,4 +1,10 @@
 @echo off
+
+:admin
+reg add HKLM /F >nul 2>&1
+if %errorlevel% neq 0 start "" /wait /I /min powershell -NoProfile -Command start -verb runas "'%~s0'" && exit /b
+
+:main
 title VideoUtils
 echo VideoUtils
 set /p input= type 1 to compress, press 2 to upscale, press 3 for both and press 4 to exit: 
@@ -14,5 +20,10 @@ C:\ffmpeg\bin\ffmpeg.exe -i %1 -c:v libx264 -vf scale=-2:2160:flags=bicubic -pre
 if "%input%"=="4" (
     exit
 )
+
+:done
 cls
+echo Done!
 pause
+cls
+goto main
